@@ -9,9 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Kyle Schutt"]
   spec.email         = ["kyle@revv.co"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = 'ShipHero API gives you the ability to integrate ShipHero with your custom e-commerce solution.'
+  spec.homepage      = "https://github.com/revvco/ship_hero"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
