@@ -28,6 +28,15 @@ module ShipHero
       def post(path, body = {}, params = {}, response_type = ShipHero::Responses::General)
         url = URI::join(Util::Config.get('endpoints.base_url'), path).to_s
         url = build_url(url, params)
+        if body.is_a?(Hash)
+          body[:token] = @api_key
+        elsif body.is_a?(Array)
+          body.each do |m|
+            if m.is_a?(Hash)
+              m[:token] = @api_key
+            end
+          end
+        end
         response = RestClient.post(url, body.to_json, get_headers())
         begin
           response_type.new JSON.parse(response.body)
