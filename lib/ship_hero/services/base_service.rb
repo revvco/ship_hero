@@ -8,7 +8,7 @@ module ShipHero
     class BaseService
       attr_accessor :api_key
 
-      def initialize(api_key = nil)
+      def initialize(api_key)
         @api_key = api_key
       end
 

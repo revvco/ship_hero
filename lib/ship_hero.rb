@@ -15,6 +15,14 @@ module ShipHero
   autoload :Image, 'ship_hero/models/image'
   autoload :Product, 'ship_hero/models/product'
   autoload :ProductVariant, 'ship_hero/models/product_variant'
+  autoload :Order, 'ship_hero/models/order'
+  autoload :OrderHistory, 'ship_hero/models/order_history'
+  autoload :OrderLineItem, 'ship_hero/models/order_line_item'
+  autoload :OrderLineItemProductShot, 'ship_hero/models/order_line_item_product_shot'
+  autoload :OrderNote, 'ship_hero/models/order_note'
+  autoload :OrderShippingAddress, 'ship_hero/models/order_shipping_address'
+  autoload :OrderShippingLines, 'ship_hero/models/order_shipping_lines'
+  autoload :Webhook, 'ship_hero/models/webhook'
 
   module Services
     autoload :BaseService, 'ship_hero/services/base_service'
@@ -26,6 +34,16 @@ module ShipHero
 
   module Responses
     autoload :General, 'ship_hero/models/responses/general'
+    autoload :CreateOrder, 'ship_hero/models/responses/create_order'
+    autoload :GetOrder, 'ship_hero/models/responses/get_order'
+    autoload :GetWebhooks, 'ship_hero/models/responses/get_webhooks'
+  end
+
+  module Requests
+    autoload :GetOrder, 'ship_hero/models/requests/get_order'
+    autoload :GetOrders, 'ship_hero/models/requests/get_orders'
+    autoload :GetProduct, 'ship_hero/models/requests/get_product'
+    autoload :GetShipment, 'ship_hero/models/requests/get_shipment'
   end
 
   module Util
