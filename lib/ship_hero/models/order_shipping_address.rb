@@ -1,5 +1,5 @@
 module ShipHero
-  class OrderShippingLines < ShipHero::Base
+  class OrderShippingAddress < ShipHero::Base
     property :province, coerce: String
     property :city, coerce: String
     property :first_name, coerce: String
