@@ -19,7 +19,7 @@ module ShipHero
       
       def create_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        post(Util::Config.get('endpoints.create_order'), request, ShipHero::Responses::CreateOrder)
+        post(Util::Config.get('endpoints.create_order'), request, nil, ShipHero::Responses::CreateOrder)
       end
       
       def update_order(request)
