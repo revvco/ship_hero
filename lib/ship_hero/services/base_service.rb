@@ -38,7 +38,7 @@ module ShipHero
           end
         end
         response = begin
-          RestClient.post(url, body.to_json, get_headers())
+          RestClient.post(url, body.to_h.to_json, get_headers())
         rescue => e
           e.try(:response)
         end
