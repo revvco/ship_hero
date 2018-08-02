@@ -10,6 +10,7 @@ module ShipHero
     property :required_ship_date, coerce: String
     property :total_discounts, coerce: String
     property :total_price, coerce: String
+    property :default_warehouse, coerce: String
 
     property :line_items, coerce: Array[ShipHero::OrderLineItem]
     property :shipping_lines, coerce: ShipHero::OrderShippingLines

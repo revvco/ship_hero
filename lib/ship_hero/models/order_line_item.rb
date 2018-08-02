@@ -9,7 +9,7 @@ module ShipHero
     property :quantity, coerce: String
     property :id, coerce: String
     property :product_id, coerce: String
-
+    property :default_warehouse, coerce: String
 
     property :product_shots, coerce: Array[ShipHero::OrderLineItemProductShot]
   end
