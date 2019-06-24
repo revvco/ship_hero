@@ -16,5 +16,6 @@ module ShipHero
     property :shipping_lines, coerce: ShipHero::OrderShippingLines
     property :note_attributes, coerce: ShipHero::OrderNote
     property :shipping_address, coerce: ShipHero::OrderShippingAddress
+    property :billing_address, coerce: ShipHero::OrderShippingAddress
   end
 end
