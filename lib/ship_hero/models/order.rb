@@ -17,5 +17,6 @@ module ShipHero
     property :note_attributes, coerce: ShipHero::OrderNote
     property :shipping_address, coerce: ShipHero::OrderShippingAddress
     property :billing_address, coerce: ShipHero::OrderShippingAddress
+    property :tags, coerce: Array[String]
   end
 end
