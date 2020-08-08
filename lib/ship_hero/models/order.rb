@@ -11,6 +11,7 @@ module ShipHero
     property :total_discounts, coerce: String
     property :total_price, coerce: String
     property :default_warehouse, coerce: String
+    property :gift_note, coerce: String
 
     property :line_items, coerce: Array[ShipHero::OrderLineItem]
     property :shipping_lines, coerce: ShipHero::OrderShippingLines
