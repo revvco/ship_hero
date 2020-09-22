@@ -13,7 +13,7 @@ module ShipHero
       @props = {
         # REST endpoints
         :endpoints => {
-          :base_url                       => 'https://api-september-2020.shiphero.com/v1.2/general-api/',
+          :base_url                       => 'https://api-november-2020.shiphero.com/v1.2/general-api/',
 
           # products
           :get_products     => 'get-product',
