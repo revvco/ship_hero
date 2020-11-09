@@ -12,6 +12,19 @@ module ShipHero
       @api_key = api_key
     end
 
+    def get_token(username, password)
+      response = begin
+        body = {
+          "username": username,
+          "password": password
+        }
+        response = RestClient.post("https://public-api.shiphero.com/auth/token", body.to_json, content_type: 'application/json')
+      rescue => e
+        e.try(:response)
+      end
+      response
+    end
+
     # Product Services
     def get_products(request)
       ShipHero::Services::ProductService.new(@api_key).get_products(request)

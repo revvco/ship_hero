@@ -54,4 +54,8 @@ module ShipHero
   module Exceptions
     autoload :ServiceException, 'ship_hero/exceptions/service_exception'
   end
+
+  module Graphql
+    autoload :ShipHeroApi, 'ship_hero/graphql/ship_hero_api'
+  end
 end
