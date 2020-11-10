@@ -6,10 +6,10 @@
 module ShipHero
   module Services
     class BaseService
-      attr_accessor :api_key
+      attr_accessor :access_token
 
-      def initialize(api_key)
-        @api_key = api_key
+      def initialize(access_token)
+        @access_token = access_token
       end
 
       protected
@@ -28,21 +28,13 @@ module ShipHero
       def post(path, body = {}, params = {}, response_type = ShipHero::Responses::General)
         url = URI::join(Util::Config.get('endpoints.base_url'), path).to_s
         url = build_url(url, params)
-        if body.is_a?(Hash)
-          body[:token] = @api_key
-        elsif body.is_a?(Array)
-          body.each do |m|
-            if m.is_a?(Hash)
-              m[:token] = @api_key
-            end
-          end
-        end
+
         response = begin
           RestClient.post(url, body.to_h.to_json, get_headers())
         rescue => e
           e.try(:response)
         end
-        
+
         begin
           response_type.new JSON.parse(response.body)
         rescue
@@ -59,7 +51,7 @@ module ShipHero
           :accept                 => 'application/json',
           :user_agent             => "ShipHero Ruby SDK v#{ShipHero::VERSION} (#{RUBY_DESCRIPTION})",
           :x_ctct_request_source  => "sdk.ruby.#{ShipHero::VERSION}",
-          'x-api-key'             => @api_key
+          :authorization          => "Bearer #{access_token}"
         }
       end
 
@@ -83,7 +75,7 @@ module ShipHero
         else
           params ||= {}
         end
-        url + '?token=' + api_key + '&' + Util::Helpers.http_build_query(params)
+        url + '?' + Util::Helpers.http_build_query(params)
       end
     end
   end

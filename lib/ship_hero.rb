@@ -57,5 +57,6 @@ module ShipHero
 
   module Graphql
     autoload :ShipHeroApi, 'ship_hero/graphql/ship_hero_api'
+    autoload :ProductQuery, 'ship_hero/graphql/queries/product_query'
   end
 end
