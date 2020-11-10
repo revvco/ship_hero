@@ -14,69 +14,62 @@ module ShipHero
 
       protected
 
-      def get(path, params = {}, response_type = ShipHero::Responses::General)
-        url = URI::join(Util::Config.get('endpoints.base_url'), path).to_s
-        url = build_url(url, params)
-        response = RestClient.get(url, get_headers())
-        begin
-          response_type.new JSON.parse(response.body)
-        rescue
-          Hashie::Mash.new JSON.parse(response.body)
-        end
-      end
+      # Define request scoped helper method for making GraphQL queries.
+      #
+      # Examples
+      #
+      #   data = query(ViewerQuery)
+      #   data.viewer.login #=> "josh"
+      #
+      # definition - A query or mutation operation ShipHeroApi::Client::Definition.
+      #              Client.parse("query { version }") returns a definition.
+      # variables - Optional set of variables to use during the operation.
+      #             (default: {})
+      #
+      # Returns a structured query result or raises if the request failed.
+      def query(definition, variables = {})
+        response = ShipHeroApi::Client.query(definition, variables: variables, context: client_context)
 
-      def post(path, body = {}, params = {}, response_type = ShipHero::Responses::General)
-        url = URI::join(Util::Config.get('endpoints.base_url'), path).to_s
-        url = build_url(url, params)
-
-        response = begin
-          RestClient.post(url, body.to_h.to_json, get_headers())
-        rescue => e
-          e.try(:response)
-        end
-
-        begin
-          response_type.new JSON.parse(response.body)
-        rescue
-          Hashie::Mash.new JSON.parse(response.body)
-        end
-      end
-
-      # Return required headers for making an http request with Iterable
-      # @param [String] content_type - The MIME type of the body of the request, default is 'application/json'
-      # @return [Hash] - authorization headers
-      def get_headers(content_type = 'application/json')
-        {
-          :content_type           => content_type,
-          :accept                 => 'application/json',
-          :user_agent             => "ShipHero Ruby SDK v#{ShipHero::VERSION} (#{RUBY_DESCRIPTION})",
-          :x_ctct_request_source  => "sdk.ruby.#{ShipHero::VERSION}",
-          :authorization          => "Bearer #{access_token}"
-        }
-      end
-
-      # Build a url from the base url and query parameters hash. Query parameters
-      # should not be URL encoded because this method will handle that
-      # @param [String] url - The base url
-      # @param [Hash] params - A hash with query parameters
-      # @return [String] - the url with query parameters hash
-      def build_url(url, params = nil)
-        if params.respond_to? :each
-          params.each do |key, value|
-            # Convert dates to CC date format
-            if value.respond_to? :iso8601
-              params[key] = value.iso8601
-            end
-
-            if key.to_s == 'next' && value.match(/^.*?next=(.*)$/)
-              params[key] = $1
-            end
-          end
+        if response.errors.any?
+          raise StandardError.new(response.errors[:data].join(", "))
         else
-          params ||= {}
+          response.data
         end
-        url + '?' + Util::Helpers.http_build_query(params)
       end
+
+      # Useful helper method for tracking GraphQL context data to pass
+      # along to the network adapter.
+      def client_context
+        { access_token: @access_token }
+      end
+
+      # def get(path, params = {}, response_type = ShipHero::Responses::General)
+      #   url = URI::join(Util::Config.get('endpoints.base_url'), path).to_s
+      #   url = build_url(url, params)
+      #   response = RestClient.get(url, get_headers())
+      #   begin
+      #     response_type.new JSON.parse(response.body)
+      #   rescue
+      #     Hashie::Mash.new JSON.parse(response.body)
+      #   end
+      # end
+
+      # def post(path, body = {}, params = {}, response_type = ShipHero::Responses::General)
+      #   url = URI::join(Util::Config.get('endpoints.base_url'), path).to_s
+      #   url = build_url(url, params)
+
+      #   response = begin
+      #     RestClient.post(url, body.to_h.to_json, get_headers())
+      #   rescue => e
+      #     e.try(:response)
+      #   end
+
+      #   begin
+      #     response_type.new JSON.parse(response.body)
+      #   rescue
+      #     Hashie::Mash.new JSON.parse(response.body)
+      #   end
+      # end
     end
   end
 end

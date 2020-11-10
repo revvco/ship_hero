@@ -1,12 +1,16 @@
-ProductQuery = SWAPI::Client.parse <<-'GRAPHQL'
-  query {
-    product(id: $id, sku: $sku) {
-      data {
-        price
-        value
-        name
-        sku
+module ShipHero
+  module Queries
+    ProductQuery = SWAPI::Client.parse <<-'GRAPHQL'
+      query {
+        product(sku: $sku) {
+          data {
+            price
+            value
+            name
+            sku
+          }
+        }
       }
-    }
-  }
-GRAPHQL
+    GRAPHQL
+  end
+end

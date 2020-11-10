@@ -35,12 +35,12 @@ module ShipHero
     end
 
     # Product Services
-    def get_products(request)
-      ShipHero::Services::ProductService.new(@access_token).get_products(request)
+    def get_product(request)
+      ShipHero::Services::ProductService.new(@access_token).get_product(request)
     end
-    def create_product(request)
-      ShipHero::Services::ProductService.new(@access_token).create_product(request)
-    end
+    # def create_product(request)
+    #   ShipHero::Services::ProductService.new(@access_token).create_product(request)
+    # end
 
     # Order Services
     def get_orders(request)
