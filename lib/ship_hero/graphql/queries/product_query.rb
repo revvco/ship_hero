@@ -1,6 +1,6 @@
 module ShipHero
   module Queries
-    ProductQuery = SWAPI::Client.parse <<-'GRAPHQL'
+    ProductQuery = ShipHeroApi::Client.parse <<-'GRAPHQL'
       query {
         product(sku: $sku) {
           data {

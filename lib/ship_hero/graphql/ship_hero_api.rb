@@ -18,7 +18,7 @@ module ShipHeroApi
   # However, it's smart to dump this to a JSON file and load from disk
   #
   # Run it from a script or rake task
-  #   GraphQL::Client.dump_schema(SWAPI::HTTP, "path/to/schema.json")
+  #   GraphQL::Client.dump_schema(ShipHeroApi::HTTP, "path/to/schema.json")
   #
   # Schema = GraphQL::Client.load_schema("path/to/schema.json")
 
