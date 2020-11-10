@@ -23,6 +23,7 @@ module ShipHero
   autoload :OrderShippingAddress, 'ship_hero/models/order_shipping_address'
   autoload :OrderShippingLines, 'ship_hero/models/order_shipping_lines'
   autoload :Webhook, 'ship_hero/models/webhook'
+  autoload :ShipHeroApi, 'ship_hero/graphql/ship_hero_api'
 
   module Services
     autoload :BaseService, 'ship_hero/services/base_service'
@@ -53,11 +54,6 @@ module ShipHero
 
   module Exceptions
     autoload :ServiceException, 'ship_hero/exceptions/service_exception'
-  end
-
-  module Graphql
-    autoload :ShipHeroApi, 'ship_hero/graphql/ship_hero_api'
-    autoload :ProductQuery, 'ship_hero/graphql/queries/product_query'
   end
 
   module Queries
