@@ -5,6 +5,8 @@ require 'json'
 require 'hashie'
 require 'openssl'
 require 'base64'
+require 'graphql/client'
+require 'graphql/client/http'
 
 module ShipHero
   autoload :Api, 'ship_hero/api'
