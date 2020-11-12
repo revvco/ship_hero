@@ -38,14 +38,8 @@ module ShipHero
     def get_product(request)
       ShipHero::Services::ProductService.new(@access_token).get_product(request)
     end
-    # def create_product(request)
-    #   ShipHero::Services::ProductService.new(@access_token).create_product(request)
-    # end
 
     # Order Services
-    def get_orders(request)
-      ShipHero::Services::OrderService.new(@access_token).get_orders(request)
-    end
     def get_order(request)
       ShipHero::Services::OrderService.new(@access_token).get_order(request)
     end
@@ -55,17 +49,6 @@ module ShipHero
     def update_order(request)
       ShipHero::Services::OrderService.new(@access_token).update_order(request)
     end
-    # def create_order_historye(request)
-    #   ShipHero::Services::OrderService.new(@access_token).create_order_historye(request)
-    # end
-
-    # Shipment Services
-    # def get_shipments(request)
-    #   ShipHero::Services::ShipmentService.new(@access_token).get_shipments(request)
-    # end
-    # def create_shipment(request)
-    #   ShipHero::Services::ShipmentService.new(@access_token).create_shipment(request)
-    # end
 
     # Webhook Services
     def get_webhooks

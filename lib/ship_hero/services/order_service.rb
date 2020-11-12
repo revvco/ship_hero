@@ -14,23 +14,26 @@ module ShipHero
 
       def get_order(request = ShipHero::Requests::GetOrder.new)
         raise Exceptions::ServiceException, "Must be a ShipHero::Requests::GetOrder" unless request.is_a?(ShipHero::Requests::GetOrder)
-        get(Util::Config.get('endpoints.base_url'), request, ShipHero::Responses::GetOrder)
+        response = client.query ShipHero::Queries::GetOrderQuery, { id: request.id }
+        response.data
       end
 
       def create_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        post(Util::Config.get('endpoints.base_url'), request, nil, ShipHero::Responses::CreateOrder)
+        # response = client.query ShipHero::Queries::CreateOrderQuery, { sku: request.sku }
+        response.data
       end
 
       def update_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        post(Util::Config.get('endpoints.base_url'), request)
+        # response = client.query ShipHero::Queries::UpdateOrderQuery, { sku: request.sku }
+        response.data
       end
 
-      def create_order_history(request)
-        raise Exceptions::ServiceException, "Must be a ShipHero::OrderHistory" unless request.is_a?(ShipHero::OrderHistory)
-        post(Util::Config.get('endpoints.base_url'), request)
-      end
+      # def create_order_history(request)
+      #   raise Exceptions::ServiceException, "Must be a ShipHero::OrderHistory" unless request.is_a?(ShipHero::OrderHistory)
+      #   post(Util::Config.get('endpoints.base_url'), request)
+      # end
     end
   end
 end
