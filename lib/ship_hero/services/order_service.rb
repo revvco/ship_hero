@@ -20,13 +20,13 @@ module ShipHero
 
       def create_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        # response = client.query ShipHero::Queries::CreateOrderQuery, { sku: request.sku }
+        response = client.query ShipHero::Queries::CreateOrderQuery, request
         response.data
       end
 
       def update_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        # response = client.query ShipHero::Queries::UpdateOrderQuery, { sku: request.sku }
+        response = client.query ShipHero::Queries::UpdateOrderQuery, request
         response.data
       end
 

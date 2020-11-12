@@ -2,15 +2,17 @@ module ShipHero
   class Order < ShipHero::Base
     property :email, coerce: String
     property :total_tax, coerce: String
-    property :order_id, coerce: String
+    # property :order_id, coerce: String
+    property :partner_order_id, coerce: String
     property :profile, coerce: String
-    property :subtotal_price, coerce: String
+    # property :subtotal_price, coerce: String
+    property :subtotal, coerce: String
     property :created_at, coerce: String
     property :fulfillment_status, coerce: String
     property :required_ship_date, coerce: String
     property :total_discounts, coerce: String
     property :total_price, coerce: String
-    property :default_warehouse, coerce: String
+    # property :default_warehouse, coerce: String
     property :gift_note, coerce: String
 
     property :line_items, coerce: Array[ShipHero::OrderLineItem]
