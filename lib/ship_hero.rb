@@ -5,8 +5,7 @@ require 'json'
 require 'hashie'
 require 'openssl'
 require 'base64'
-require 'graphql/client'
-require 'graphql/client/http'
+require 'graphlient'
 
 module ShipHero
   autoload :Api, 'ship_hero/api'
@@ -25,7 +24,6 @@ module ShipHero
   autoload :OrderShippingAddress, 'ship_hero/models/order_shipping_address'
   autoload :OrderShippingLines, 'ship_hero/models/order_shipping_lines'
   autoload :Webhook, 'ship_hero/models/webhook'
-  autoload :ShipHeroApi, 'ship_hero/graphql/ship_hero_api'
 
   module Services
     autoload :BaseService, 'ship_hero/services/base_service'
