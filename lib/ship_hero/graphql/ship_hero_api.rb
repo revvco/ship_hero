@@ -3,7 +3,7 @@ module ShipHeroApi
   HTTP = GraphQL::Client::HTTP.new("https://public-api.shiphero.com/graphql") do
     def headers(context)
       unless token = context[:access_token]
-        fail 'Missing access token'
+        fail 'Missing ShipHero access token'
       end
 
       {

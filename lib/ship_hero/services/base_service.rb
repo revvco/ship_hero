@@ -12,8 +12,6 @@ module ShipHero
         @access_token = access_token
       end
 
-      protected
-
       # Define request scoped helper method for making GraphQL queries.
       #
       # Examples
@@ -28,7 +26,8 @@ module ShipHero
       #
       # Returns a structured query result or raises if the request failed.
       def query(definition, variables = {})
-        response = ShipHeroApi::Client.query(definition, variables: variables, context: client_context)
+        # puts client_context
+        response = ShipHeroApi::Client.query(definition, variables: variables, context: { access_token: @access_token })
 
         if response.errors.any?
           raise StandardError.new(response.errors[:data].join(", "))
@@ -40,6 +39,8 @@ module ShipHero
       # Useful helper method for tracking GraphQL context data to pass
       # along to the network adapter.
       def client_context
+        puts 'LOL client_context'
+        puts @access_token
         { access_token: @access_token }
       end
 

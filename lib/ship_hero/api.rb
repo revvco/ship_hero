@@ -55,17 +55,17 @@ module ShipHero
     def update_order(request)
       ShipHero::Services::OrderService.new(@access_token).update_order(request)
     end
-    def create_order_historye(request)
-      ShipHero::Services::OrderService.new(@access_token).create_order_historye(request)
-    end
+    # def create_order_historye(request)
+    #   ShipHero::Services::OrderService.new(@access_token).create_order_historye(request)
+    # end
 
     # Shipment Services
-    def get_shipments(request)
-      ShipHero::Services::ShipmentService.new(@access_token).get_shipments(request)
-    end
-    def create_shipment(request)
-      ShipHero::Services::ShipmentService.new(@access_token).create_shipment(request)
-    end
+    # def get_shipments(request)
+    #   ShipHero::Services::ShipmentService.new(@access_token).get_shipments(request)
+    # end
+    # def create_shipment(request)
+    #   ShipHero::Services::ShipmentService.new(@access_token).create_shipment(request)
+    # end
 
     # Webhook Services
     def get_webhooks
