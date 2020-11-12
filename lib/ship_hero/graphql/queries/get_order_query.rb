@@ -1,7 +1,7 @@
 module ShipHero
   module Queries
     GetOrderQuery = <<-GRAPHQL
-      query($id: Int) {
+      query($id: String!) {
         order(id: $id) {
           data {
             id
