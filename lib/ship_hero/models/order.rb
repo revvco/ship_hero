@@ -2,7 +2,7 @@ module ShipHero
   class Order < ShipHero::Base
     property :email, coerce: String
     property :total_tax, coerce: String
-    # property :order_id, coerce: String
+    property :order_id, coerce: String
     property :partner_order_id, coerce: String
     property :profile, coerce: String
     # property :subtotal_price, coerce: String
