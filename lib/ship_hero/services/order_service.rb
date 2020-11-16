@@ -26,7 +26,7 @@ module ShipHero
 
       def update_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        response = client.query ShipHero::Queries::UpdateOrderQuery, request
+        response = client.query ShipHero::Queries::UpdateOrderQuery, { order: request }
         response.data
       end
 

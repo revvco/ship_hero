@@ -34,6 +34,20 @@ module ShipHero
       response
     end
 
+    def self.refresh_token(refresh_token)
+      response = begin
+        body = {
+          "refresh_token": refresh_token
+        }
+        response = RestClient.post("https://public-api.shiphero.com/auth/refresh", body.to_json, content_type: 'application/json')
+      rescue => e
+        e.try(:response)
+      end
+      body = JSON.parse(response.body)
+
+      response
+    end
+
     # Product Services
     def get_product(request)
       ShipHero::Services::ProductService.new(@access_token).get_product(request)
