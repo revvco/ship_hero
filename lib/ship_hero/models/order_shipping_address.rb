@@ -1,11 +1,11 @@
 module ShipHero
   class OrderShippingAddress < ShipHero::Base
-    property :province, coerce: String
+    property :state, coerce: String
     property :city, coerce: String
     property :first_name, coerce: String
     property :last_name, coerce: String
     property :zip, coerce: String
-    property :province_code, coerce: String
+    property :state_code, coerce: String
     property :country, coerce: String
     property :company, coerce: String
     property :phone, coerce: String
