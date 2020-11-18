@@ -7,15 +7,15 @@
 module ShipHero
   module Services
     class ProductService < BaseService
-      def get_products(request = ShipHero::Requests::GetProduct.new)
+      def get_product(request = ShipHero::Requests::GetProduct.new)
         raise Exceptions::ServiceException, "Must be a ShipHero::Requests::GetProduct" unless request.is_a?(ShipHero::Requests::GetProduct)
-        get(Util::Config.get('endpoints.get_products'), request)
+        client.query ShipHero::Queries::GetProductQuery, { sku: request.sku }
       end
 
-      def create_product(product)
-        raise Exceptions::ServiceException, "Must be a ShipHero::Product" unless product.is_a?(ShipHero::Product)
-        post(Util::Config.get('endpoints.create_product'), [product])
-      end
+      # def create_product(product)
+      #   raise Exceptions::ServiceException, "Must be a ShipHero::Product" unless product.is_a?(ShipHero::Product)
+      #   post(Util::Config.get('endpoints.base_url'), [product])
+      # end
     end
   end
 end

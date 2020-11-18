@@ -5,6 +5,7 @@ require 'json'
 require 'hashie'
 require 'openssl'
 require 'base64'
+require 'graphlient'
 
 module ShipHero
   autoload :Api, 'ship_hero/api'
@@ -53,5 +54,15 @@ module ShipHero
 
   module Exceptions
     autoload :ServiceException, 'ship_hero/exceptions/service_exception'
+  end
+
+  module Queries
+    autoload :GetProductQuery, 'ship_hero/graphql/queries/get_product_query'
+    autoload :GetOrderQuery, 'ship_hero/graphql/queries/get_order_query'
+    autoload :CreateOrderQuery, 'ship_hero/graphql/queries/create_order_query'
+    autoload :UpdateOrderQuery, 'ship_hero/graphql/queries/update_order_query'
+    autoload :GetWebhooksQuery, 'ship_hero/graphql/queries/get_webhooks_query'
+    autoload :RegisterWebhookQuery, 'ship_hero/graphql/queries/register_webhook_query'
+    autoload :UnregisterWebhookQuery, 'ship_hero/graphql/queries/unregister_webhook_query'
   end
 end

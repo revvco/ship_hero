@@ -6,54 +6,73 @@
 
 module ShipHero
   class Api
-    attr_accessor :api_key
+    attr_accessor :username
+    attr_accessor :password
+    attr_accessor :access_token
+    attr_accessor :refresh_token
+    attr_accessor :expires_in
 
-    def initialize(api_key)
-      @api_key = api_key
+    def initialize(username, password)
+      get_token(username, password)
+    end
+
+    def get_token(username, password)
+      response = begin
+        body = {
+          "username": username,
+          "password": password
+        }
+        response = RestClient.post("https://public-api.shiphero.com/auth/token", body.to_json, content_type: 'application/json')
+      rescue => e
+        e.try(:response)
+      end
+      body = JSON.parse(response.body)
+
+      @access_token = body['access_token']
+      @refresh_token = body['refresh_token']
+      @expires_in = body['expires_in']
+      response
+    end
+
+    def self.refresh_token(refresh_token)
+      response = begin
+        body = {
+          "refresh_token": refresh_token
+        }
+        response = RestClient.post("https://public-api.shiphero.com/auth/refresh", body.to_json, content_type: 'application/json')
+      rescue => e
+        e.try(:response)
+      end
+      body = JSON.parse(response.body)
+
+      response
     end
 
     # Product Services
-    def get_products(request)
-      ShipHero::Services::ProductService.new(@api_key).get_products(request)
-    end
-    def create_product(request)
-      ShipHero::Services::ProductService.new(@api_key).create_product(request)
+    def get_product(request)
+      ShipHero::Services::ProductService.new(@access_token).get_product(request)
     end
 
     # Order Services
-    def get_orders(request)
-      ShipHero::Services::OrderService.new(@api_key).get_orders(request)
-    end
     def get_order(request)
-      ShipHero::Services::OrderService.new(@api_key).get_order(request)
+      ShipHero::Services::OrderService.new(@access_token).get_order(request)
     end
     def create_order(request)
-      ShipHero::Services::OrderService.new(@api_key).create_order(request)
+      ShipHero::Services::OrderService.new(@access_token).create_order(request)
     end
     def update_order(request)
-      ShipHero::Services::OrderService.new(@api_key).update_order(request)
-    end
-    def create_order_historye(request)
-      ShipHero::Services::OrderService.new(@api_key).create_order_historye(request)
-    end
-
-    # Shipment Services
-    def get_shipments(request)
-      ShipHero::Services::ShipmentService.new(@api_key).get_shipments(request)
-    end
-    def create_shipment(request)
-      ShipHero::Services::ShipmentService.new(@api_key).create_shipment(request)
+      ShipHero::Services::OrderService.new(@access_token).update_order(request)
     end
 
     # Webhook Services
     def get_webhooks
-      ShipHero::Services::WebhookService.new(@api_key).get_webhooks
+      ShipHero::Services::WebhookService.new(@access_token).get_webhooks
     end
     def register_webhook(request)
-      ShipHero::Services::WebhookService.new(@api_key).register_webhook(request)
+      ShipHero::Services::WebhookService.new(@access_token).register_webhook(request)
     end
     def unregister_webhook(request)
-      ShipHero::Services::WebhookService.new(@api_key).unregister_webhook(request)
+      ShipHero::Services::WebhookService.new(@access_token).unregister_webhook(request)
     end
   end
 end
