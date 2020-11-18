@@ -14,20 +14,17 @@ module ShipHero
 
       def get_order(request = ShipHero::Requests::GetOrder.new)
         raise Exceptions::ServiceException, "Must be a ShipHero::Requests::GetOrder" unless request.is_a?(ShipHero::Requests::GetOrder)
-        response = client.query ShipHero::Queries::GetOrderQuery, { id: request.id }
-        response.data
+        client.query ShipHero::Queries::GetOrderQuery, { id: request.id }
       end
 
       def create_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        response = client.query ShipHero::Queries::CreateOrderQuery, { newOrder: request }
-        response.data
+        client.query ShipHero::Queries::CreateOrderQuery, { newOrder: request }
       end
 
       def update_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        response = client.query ShipHero::Queries::UpdateOrderQuery, { order: request }
-        response.data
+        client.query ShipHero::Queries::UpdateOrderQuery, { order: request }
       end
     end
   end

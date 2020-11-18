@@ -8,20 +8,17 @@ module ShipHero
   module Services
     class WebhookService < BaseService
       def get_webhooks
-        response = client.query ShipHero::Responses::GetWebhooks
-        response.data
+        client.query ShipHero::Queries::GetWebhooksQuery
       end
 
       def register_webhook(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Webhook" unless request.is_a?(ShipHero::Webhook)
-        response = client.query ShipHero::Responses::RegisterWebhookQuery, request
-        response.data
+        client.query ShipHero::Queries::RegisterWebhookQuery, { newWebhook: request }
       end
 
       def unregister_webhook(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Webhook" unless request.is_a?(ShipHero::Webhook)
-        response = client.query ShipHero::Responses::UnregisterWebhookQuery, request
-        response.data
+        client.query ShipHero::Queries::UnregisterWebhookQuery, { webhook: request }
       end
     end
   end
