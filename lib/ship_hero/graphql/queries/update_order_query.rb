@@ -1,29 +1,27 @@
 module ShipHero
   module Queries
     UpdateOrderQuery = <<-GRAPHQL
-    mutation {
-      order_update(
-        data: {
-          order_id: "157814937"
-          packing_note: "Some note for the Packer"
-          profile: "default"
-          priority_flag:true
-          shipping_address: {
-            address1: "2543 Duck St."
-            address2: "Apt. 2"
-            city: "Oklahoma"
-            state: "OK"
-            state_code: "OK"
-            zip: "73008"
-            country: "US"
-            country_code: "US"
-            email: "johnjohnsonco@johnsonco.com"
-            phone: "5555555555"
-          }
-        }
-      ) {
+    mutation($order: UpdateOrderInput!) {
+      order_update(data: $order) {
         request_id
-        complexity
+        order {
+          id
+          order_number
+          partner_order_id
+          shop_name
+          fulfillment_status
+          order_date
+          total_tax
+          subtotal
+          total_discounts
+          total_price
+          auto_print_return_label
+          email
+          profile
+          gift_note
+          packing_note
+          required_ship_date
+        }
       }
     }
     GRAPHQL
