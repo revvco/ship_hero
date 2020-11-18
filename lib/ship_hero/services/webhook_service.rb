@@ -8,7 +8,7 @@ module ShipHero
   module Services
     class WebhookService < BaseService
       def get_webhooks
-        response = client.query ShipHero::Responses::GetWebhooksQuery
+        response = client.query ShipHero::Responses::GetWebhooks
         response.data
       end
 

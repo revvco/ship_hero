@@ -1,10 +1,8 @@
 module ShipHero
   module Queries
     CreateOrderQuery = <<-GRAPHQL
-      mutation createNewOrder($newOrder: CreateOrderInput!) {
+      mutation($newOrder: CreateOrderInput!) {
         order_create(data: $newOrder) {
-          request_id
-          complexity
           order {
             id
             order_number
