@@ -2,7 +2,7 @@ module ShipHero
   class OrderLineItem < ShipHero::Base
     property :sku, coerce: String
     property :product_name, coerce: String
-    property :title, coerce: String
+    property :option_title, coerce: String
     property :price, coerce: String
     property :barcode, coerce: String
     property :quantity, coerce: String
