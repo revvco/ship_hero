@@ -14,8 +14,9 @@ module ShipHero
 
       def get_products(request = ShipHero::Requests::GetProduct.new)
         raise Exceptions::ServiceException, "Must be a ShipHero::Requests::GetProduct" unless request.is_a?(ShipHero::Requests::GetProduct)
-        response = client.query ShipHero::Queries::GetProductsQuery
+        response = client.query ShipHero::Queries::GetProductsQuery, { sku: request.sku }
         edges = response.data.products.data.edges
+
         products = []
         edges.each do |e|
           products << e.node
