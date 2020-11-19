@@ -1,8 +1,8 @@
 module ShipHero
   module Queries
     GetProductsQuery = <<-GRAPHQL
-      query {
-        products {
+      query($sku: String) {
+        products(sku: $sku) {
           request_id
           complexity
           data {
