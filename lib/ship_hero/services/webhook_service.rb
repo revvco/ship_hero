@@ -9,7 +9,12 @@ module ShipHero
     class WebhookService < BaseService
       def get_webhooks
         response = client.query ShipHero::Queries::GetWebhooksQuery
-        response&.data&.webhooks&.data&.edges
+        edges = response&.data&.webhooks&.data&.edges
+        webhooks = []
+        edges.each do |e|
+          webhooks << ShipHero::Webhook.new(name: e.node.name, url: e.node.url, source: e.node.source)
+        end
+        ShipHero::Responses::GetWebhooks.new(webhooks: webhooks)
       end
 
       def register_webhook(request)

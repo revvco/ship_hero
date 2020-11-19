@@ -53,6 +53,10 @@ module ShipHero
       ShipHero::Services::ProductService.new(@access_token).get_product(request)
     end
 
+    def get_products(request = ShipHero::Requests::GetProduct.new)
+      ShipHero::Services::ProductService.new(@access_token).get_products(request)
+    end
+
     # Order Services
     def get_order(request)
       ShipHero::Services::OrderService.new(@access_token).get_order(request)
