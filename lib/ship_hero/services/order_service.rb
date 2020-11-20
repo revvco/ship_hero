@@ -19,7 +19,8 @@ module ShipHero
 
       def create_order(request)
         raise Exceptions::ServiceException, "Must be a ShipHero::Order" unless request.is_a?(ShipHero::Order)
-        client.query ShipHero::Queries::CreateOrderQuery, { newOrder: request }
+        response = client.query ShipHero::Queries::CreateOrderQuery, { newOrder: request }
+        ShipHero::Responses::CreateOrder(order_id: response&.data&.order_create&.order.id)
       end
 
       def update_order(request)
