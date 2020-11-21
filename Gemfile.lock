@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ship_hero (0.1.3)
+    ship_hero (0.2.0)
       faraday (~> 0.15.4)
       graphlient (~> 0.3.7)
       hashie (>= 1.2.0, < 4.0)

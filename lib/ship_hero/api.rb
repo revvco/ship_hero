@@ -13,6 +13,9 @@ module ShipHero
     attr_accessor :expires_in
 
     def initialize(username, password, access_token = nil)
+      @access_token = access_token
+      @username = username
+      @password = password
       get_token(username, password) if access_token.blank?
     end
 
