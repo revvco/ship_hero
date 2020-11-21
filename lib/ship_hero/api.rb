@@ -12,8 +12,8 @@ module ShipHero
     attr_accessor :refresh_token
     attr_accessor :expires_in
 
-    def initialize(username, password)
-      get_token(username, password)
+    def initialize(username, password, access_token = nil)
+      get_token(username, password) if access_token.blank?
     end
 
     def get_token(username, password)
@@ -52,7 +52,6 @@ module ShipHero
     def get_product(request)
       ShipHero::Services::ProductService.new(@access_token).get_product(request)
     end
-
     def get_products(request)
       ShipHero::Services::ProductService.new(@access_token).get_products(request)
     end
