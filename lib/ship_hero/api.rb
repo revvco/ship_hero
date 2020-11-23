@@ -34,7 +34,7 @@ module ShipHero
       @access_token = body['access_token']
       @refresh_token = body['refresh_token']
       @expires_in = body['expires_in']
-      response
+      body
     end
 
     def self.refresh_token(refresh_token)
@@ -46,9 +46,8 @@ module ShipHero
       rescue => e
         e.try(:response)
       end
-      body = JSON.parse(response.body)
 
-      response
+      JSON.parse(response.body)
     end
 
     # Product Services
