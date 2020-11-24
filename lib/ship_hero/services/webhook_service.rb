@@ -12,7 +12,7 @@ module ShipHero
         edges = response&.data&.webhooks&.data&.edges
         webhooks = []
         edges.each do |e|
-          webhooks << ShipHero::Webhook.new(name: e.node.name, url: e.node.url, source: e.node.source)
+          webhooks << ShipHero::Webhook.new(name: e.node.name, url: e.node.url)
         end
         ShipHero::Responses::GetWebhooks.new(webhooks: webhooks)
       end
