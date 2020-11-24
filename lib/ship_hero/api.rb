@@ -16,7 +16,7 @@ module ShipHero
       @access_token = access_token
       @username = username
       @password = password
-      get_token(username, password) if access_token.blank?
+      get_token(username, password) if access_token == nil
     end
 
     def get_token(username, password)
