@@ -3,6 +3,6 @@ module ShipHero
     property :title, coerce: String
     property :price, coerce: String
     property :method, coerce: String
-    # property :carrier, coerce: String
+    property :carrier, coerce: String
   end
 end

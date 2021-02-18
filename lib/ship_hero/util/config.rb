@@ -13,27 +13,7 @@ module ShipHero
       @props = {
         # REST endpoints
         :endpoints => {
-          :base_url                       => 'https://api-november-2020.shiphero.com/v1.2/general-api/',
-
-          # products
-          :get_products     => 'get-product',
-          :create_product   => 'product-creation',
-
-          # orders
-          :get_orders             => 'get-orders',
-          :get_order              => 'get-order',
-          :create_order           => 'order-creation',
-          :update_order           => 'order-update',
-          :create_order_history   => 'order-history-creation',
-
-          # shipments
-          :get_shipments          => 'get-shipments',
-          :create_shipment        => 'shipment-creation',
-
-          # webhooks
-          :get_webhooks         => 'get-webhooks',
-          :register_webhook     => 'register-webhook',
-          :unregister_webhook   => 'unregister-webhook',
+          :base_url                       => 'https://public-api.shiphero.com/graphql',
         },
 
         # Authorization related configuration options
