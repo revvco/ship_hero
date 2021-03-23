@@ -24,11 +24,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency("rest-client", '< 4.0', '>= 1.6.7')
-  spec.add_runtime_dependency("json", '>= 1.8.1')
+  spec.add_runtime_dependency("json", '~> 2.5')
   spec.add_runtime_dependency('mime-types', '< 4.0', '>= 1.25.1')
-  spec.add_runtime_dependency('hashie', '< 4.0', '>= 1.2.0')
+  spec.add_runtime_dependency('hashie', '>= 1.2.0')
   spec.add_runtime_dependency("graphlient", "~> 0.3.7")
-  spec.add_runtime_dependency("faraday", "~> 0.15.4")
+  spec.add_runtime_dependency("faraday", ">= 1.0")
   spec.add_runtime_dependency("httplog")
 
   spec.add_development_dependency "bundler", "~> 1.16"
