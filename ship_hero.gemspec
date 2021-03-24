@@ -27,8 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency("json", '~> 2.5')
   spec.add_runtime_dependency('mime-types', '< 4.0', '>= 1.25.1')
   spec.add_runtime_dependency('hashie', '>= 1.2.0')
-  spec.add_runtime_dependency("graphlient", "~> 0.3.7")
-  spec.add_runtime_dependency("faraday", ">= 1.0")
+  spec.add_runtime_dependency("graphlient", "~> 0.5")
   spec.add_runtime_dependency("httplog")
 
   spec.add_development_dependency "bundler", "~> 1.16"

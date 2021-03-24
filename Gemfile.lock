@@ -2,8 +2,7 @@ PATH
   remote: .
   specs:
     ship_hero (0.2.0)
-      faraday (>= 1.0)
-      graphlient (~> 0.3.7)
+      graphlient (~> 0.5)
       hashie (>= 1.2.0)
       httplog
       json (~> 2.5)
@@ -30,8 +29,8 @@ GEM
     faraday-net_http (1.0.1)
     faraday_middleware (1.0.0)
       faraday (~> 1.0)
-    graphlient (0.3.7)
-      faraday
+    graphlient (0.5.0)
+      faraday (>= 1.0)
       faraday_middleware
       graphql-client
     graphql (1.12.6)
