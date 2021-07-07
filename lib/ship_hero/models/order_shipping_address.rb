@@ -12,5 +12,6 @@ module ShipHero
     property :country_code, coerce: String
     property :address1, coerce: String
     property :address2, coerce: String
+    property :email, coerce: String
   end
 end
